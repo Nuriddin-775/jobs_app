@@ -3,7 +3,7 @@ import axios from "axios";
 
 function useFetch(endpoint, query) {
   const [data, setData] = useState([]);
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const options = {
@@ -20,6 +20,7 @@ function useFetch(endpoint, query) {
 
   const fetchData = async () => {
     setIsLoading(true);
+
     try {
       const response = await axios.request(options);
 
@@ -27,7 +28,7 @@ function useFetch(endpoint, query) {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert("There is an error");
+      console.log("There is an error");
     } finally {
       setIsLoading(false);
     }
@@ -42,7 +43,7 @@ function useFetch(endpoint, query) {
     fetchData();
   };
 
-  return { data, isloading, error, refetch };
+  return { data, isLoading, error, refetch };
 }
 
 export default useFetch;
